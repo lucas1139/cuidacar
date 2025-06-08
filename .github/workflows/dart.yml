@@ -16,7 +16,7 @@ jobs:
       # Setup Flutter SDK with an explicit version
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.13.0' # Replace with the latest stable version
+          flutter-version: '3.32.2' # Replace with the latest stable version
 
       - name: Install dependencies
         run: flutter pub get
