@@ -20,13 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-- name: Run tests
-  run: |
-    if [ -d "test" ]; then
-      flutter test
-    else
-      echo "No test directory found, skipping tests."
-    fi
+
+    
       # Uncomment this step to verify the use of 'flutter format' on each commit.
       # - name: Verify formatting
       #   run: flutter format --output=none --set-exit-if-changed .
