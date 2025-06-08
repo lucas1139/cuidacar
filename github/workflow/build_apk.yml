@@ -1,38 +1,30 @@
- Flutter Build APK
+name: Build APK
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.22.0'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.6' # ou outra versão estável
 
-    - name: Verificar estrutura do projeto
-      run: |
-        ls -la
-        ls -la app/
-        ls -la app/lib/
+      - name: Install dependencies
+        run: flutter pub get
 
-    - name: Instalar dependências
-      run: |
-        cd app
-        flutter pub get
+      - name: Build APK
+        run: flutter build apk --release
 
-    - name: Compilar APK
-      run: |
-        cd app
-        flutter build apk --release
-
-    - name: Salvar artefato (APK)
-      uses: actions/upload-artifact@v4
-      with:
-        name: auto_care_apk
-        path: app/build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto_care_app_apk
+          path: build/app/outputs/flutter-apk/app-release.apk
